@@ -10,7 +10,8 @@ devenv:
 	pip install -r requirements-dev.txt; \
 
 scrub:
-	@find . -regex "\(.*__pycache__.*\|*.py[co]\)" -delete
+	@find . -regex "\(.*__pycache__.*\|*.py[co]\)" -delete; \
+	rm -rf Flask_Firehose.egg-info; \
 
 test:
 	@source ./venv/bin/activate; \
