@@ -35,7 +35,6 @@ class Firehose(object):
         setattr(g, 'firehose_header_val', "")
 
     def push(self, url, *args, **kwargs):
-        print("")
         pushed_items = g.get('firehose_pushed_items')
         if url not in pushed_items:
             pushed_items.add(url)
