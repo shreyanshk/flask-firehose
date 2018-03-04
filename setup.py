@@ -11,7 +11,7 @@ from setuptools import setup
 
 setup(
     name='Flask-Firehose',
-    version='0.1',
+    version='0.2',
     url='https://github.com/shreyanshk/flask-firehose',
     license='See License',
     author='Shreyansh Khajanchi',

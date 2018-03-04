@@ -21,6 +21,21 @@ class Connector(object):
         session["h2-pushed"] = val
 
 
+def push(url, *args, **kwargs):
+    pushed_items = g.get('firehose_pushed_items')
+    if url not in pushed_items:
+        pushed_items.add(url)
+        s = "<{}>".format(url)
+        for key, val in kwargs.items():
+            s += "; {}={}".format(key, val)
+        for item in args:
+            s += "; {}".format(item)
+        s += ', '
+        pstr = g.get('firehose_header_val')
+        pstr += s
+        setattr(g, 'firehose_header_val', pstr)
+    return url
+
 class Firehose(object):
 
     def __init__(self, app=None, connector=Connector):
@@ -34,21 +49,6 @@ class Firehose(object):
         setattr(g, 'firehose_pushed_items', pushed_items)
         setattr(g, 'firehose_header_val', "")
 
-    def push(self, url, *args, **kwargs):
-        pushed_items = g.get('firehose_pushed_items')
-        if url not in pushed_items:
-            pushed_items.add(url)
-            s = "<{}>".format(url)
-            for key, val in kwargs.items():
-                s += "; {}={}".format(key, val)
-            for item in args:
-                s += "; {}".format(item)
-            s += ', '
-            pstr = g.get('firehose_header_val')
-            pstr += s
-            setattr(g, 'firehose_header_val', pstr)
-        return url
-
     def set_header(self, resp):
         if g.get('firehose_header_val'):
             resp.headers['Link'] = g.get('firehose_header_val')
@@ -57,5 +57,5 @@ class Firehose(object):
 
     def init_app(self, app):
         app.before_request(self.populate)
-        app.jinja_env.globals.update(push=self.push)
+        app.jinja_env.globals.update(push=push)
         app.after_request(self.set_header)
