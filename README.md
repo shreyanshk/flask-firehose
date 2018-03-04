@@ -9,8 +9,6 @@ Pull requests are welcome.
 ### Initialization
 With application factories
 
-.. code-block:: python
-
 	firehose = Firehose()
 
 	def create_app():
@@ -21,16 +19,12 @@ With application factories
 
 Direct initialization
 
-.. code-block:: python
-
 	app = Flask(__name__)
 	Firehose(app)
 
 
 ### Pushing resources
 Let the document writer decide what to push
-
-.. code-block:: jinja
 
     {% extends 'base.html' %}
 	{% block body %}
@@ -40,8 +34,6 @@ Let the document writer decide what to push
 
 
 Let the backend developer decide what to push
-
-.. code-block:: python
 
 	from flask_firehose import push
 
@@ -54,8 +46,6 @@ Let the backend developer decide what to push
 ### Tracking pushed resources
 Ideally, resources already pushed during a session shouldn't be pushed again. So, Flask-Firehose includes a simple utility class to track pushed resources using session variable 'h2-pushed'.
 Additionally, Flask-Firehose also support for using custom code to track pushed resources in case the default implementation is unsuitable.
-
-.. code-block:: python
 
 	class Custom_connector():
 
@@ -70,7 +60,6 @@ Additionally, Flask-Firehose also support for using custom code to track pushed 
 
 Using custom connector with Firehose
 
-.. code-block:: python
 	firehose = Firehose(connector=Custom_connector())
 	firehose.init_app(app)
 
