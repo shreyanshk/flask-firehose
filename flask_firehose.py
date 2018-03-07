@@ -36,6 +36,7 @@ def push(url, *args, **kwargs):
         setattr(g, 'firehose_header_val', pstr)
     return url
 
+
 class Firehose(object):
 
     def __init__(self, app=None, connector=Connector):
