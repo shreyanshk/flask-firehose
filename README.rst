@@ -4,6 +4,14 @@ Flask-Firehose
 HTTP/2 Server Push for your Flask apps.
 
 
+Installation
+-----------
+
+.. code-block:: python
+
+    pip install flask-firehose
+
+
 Usage
 -----
 Initialization
