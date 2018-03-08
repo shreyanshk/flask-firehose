@@ -12,20 +12,20 @@ With application factories
 
 .. code-block:: python
 
-	firehose = Firehose()
+    firehose = Firehose()
 
-	def create_app():
-		app = Flask(__name__)
-		firehose.init_app(app)
-		return app
+    def create_app():
+        app = Flask(__name__)
+        firehose.init_app(app)
+        return app
 
 
 Direct initialization
 
 .. code-block:: python
 
-	app = Flask(__name__)
-	Firehose(app)
+    app = Flask(__name__)
+    Firehose(app)
 
 
 Pushing resources
@@ -35,22 +35,22 @@ Let the document writer decide what to push
 .. code-block:: jinja
 
     {% extends 'base.html' %}
-	{% block body %}
-		<link rel="stylesheet" href="{{ push('/static/css/main.css', as='style', rel='preload') }}">
-		This is some document.
-	{% endblock %}
+    {% block body %}
+        <link rel="stylesheet" href="{{ push('/static/css/main.css', as='style', rel='preload') }}">
+        This is some document.
+    {% endblock %}
 
 
 Let the backend developer decide what to push
 
 .. code-block:: python
 
-	from flask_firehose import push
+    from flask_firehose import push
 
-	@app.route('/someroute')
-	def render_someroute():
-		push('/static/css/main.css', as='style', rel='preload')
-		return render_template('some_template')
+    @app.route('/someroute')
+    def render_someroute():
+        push('/static/css/main.css', as='style', rel='preload')
+        return render_template('some_template')
 
 
 Tracking pushed resources
@@ -60,23 +60,36 @@ Additionally, Flask-Firehose also supports add custom code to track pushed resou
 
 .. code-block:: python
 
-	class Custom_connector():
+    class Custom_connector():
 
-		def get_pushed(self):
-			"""return: type Set"""
-			# your code here
+        def get_pushed(self):
+            """Returns a set of items that have been already pushed to client.
 
-		def set_pushed(self, set_of_resources_pushed):
-			"""return: None"""
-			# your code here
+            Returns
+            -------
+            set
+                Set of items that are pushed.
+
+            """
+            # your code here
+
+        def set_pushed(self, inset):
+            """Update client state after pushing more items at the end of request.
+
+            Parameters
+            ----------
+            inset : set
+                A set of URLs of pushed items.
+            """
+            # your code here
 
 
 Using custom connector with Firehose
 
 .. code-block:: python
 
-	firehose = Firehose(connector=Custom_connector())
-	firehose.init_app(app)
+    firehose = Firehose(connector=Custom_connector())
+    firehose.init_app(app)
 
 
 Configure NGINX
