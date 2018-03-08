@@ -13,7 +13,7 @@ setup(
     name='Flask-Firehose',
     version='0.2',
     url='https://github.com/shreyanshk/flask-firehose',
-    license='See License',
+    license='MIT',
     author='Shreyansh Khajanchi',
     author_email='hello@shreyanshja.in',
     description='HTTP/2 Server Push for your Flask apps.',
