@@ -56,7 +56,7 @@ Let the backend developer decide what to push
 Tracking pushed resources
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 Ideally, resources already pushed during a session shouldn't be pushed again. So, Flask-Firehose includes a simple utility class to track pushed resources using session variable 'h2-pushed'.
-Additionally, Flask-Firehose also supports add custom code to track pushed resources in case the default implementation is unsuitable.
+Additionally, Flask-Firehose can also works with external code to track pushed resources in case the provided implementation is unsuitable.
 
 .. code-block:: python
 
