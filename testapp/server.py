@@ -7,6 +7,11 @@ Firehose(app)
 app.config['SECRET_KEY'] = 's3cr3t k3y'
 
 
+@app.route('/', methods=['GET'])
+def render_index():
+    return render_template('index.html')
+
+
 @app.route('/doc1a', methods=['GET'])
 def render_doc1a():
     return render_template('doc1.html')
