@@ -1,11 +1,17 @@
-from flask import request, g, session
+from flask import g, session
 
 
 class Connector(object):
 
     @staticmethod
     def get_pushed():
-        """docstring comes here
+        """Returns a set of items that have been already pushed to client.
+
+        Returns
+        -------
+        set
+            Set of items that are pushed.
+
         """
         pushed_items = session.get("h2-pushed", None)
         if pushed_items:
@@ -15,13 +21,34 @@ class Connector(object):
 
     @staticmethod
     def set_pushed(inset):
-        """
+        """Update client state after pushing more items at the end of request.
+
+        Parameters
+        ----------
+        inset : set
+            A set of URLs of pushed items.
         """
         val = ','.join(inset)
         session["h2-pushed"] = val
 
 
 def push(url, *args, **kwargs):
+    """Pushes the resource at given URL.
+
+    Keyword arguments are added to the header and then positional arguments.
+
+    Parameters
+    ----------
+    args : tuple
+        positional arguments to append to header.
+    kwargs : dict
+        keyword arguments to append to header.
+
+    Returns
+    -------
+    str
+        The url is returned back as-is.
+    """
     pushed_items = g.get('firehose_pushed_items')
     if url not in pushed_items:
         pushed_items.add(url)
