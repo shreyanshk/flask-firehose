@@ -30,4 +30,5 @@ def render_doc2():
 
 
 if __name__ == '__main__':
+	# No need for full WSGI server to test the extension.
     app.run(host='0.0.0.0', port=8086, debug=True)
