@@ -15,7 +15,7 @@ with open("README.rst", 'rt', encoding='utf8') as f:
 
 setup(
     name='Flask-Firehose',
-    version='0.2.1',
+    version='0.2.2',
     url='https://github.com/shreyanshk/flask-firehose',
     license='MIT',
     author='Shreyansh Khajanchi',
