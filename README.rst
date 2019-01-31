@@ -5,7 +5,7 @@ HTTP/2 Server Push for your Flask apps.
 
 
 Installation
------------
+------------
 
 .. code-block:: python
 
@@ -16,7 +16,15 @@ Usage
 -----
 Initialization
 ~~~~~~~~~~~~~~
-With application factories
+
+Direct initialization:
+
+.. code-block:: python
+
+    app = Flask(__name__)
+    Firehose(app)
+
+With application factories:
 
 .. code-block:: python
 
@@ -28,17 +36,10 @@ With application factories
         return app
 
 
-Direct initialization
-
-.. code-block:: python
-
-    app = Flask(__name__)
-    Firehose(app)
-
-
 Pushing resources
 ~~~~~~~~~~~~~~~~~
-Let the document writer decide what to push
+
+Let the HTML template writer decide what to push:
 
 .. code-block:: jinja
 
@@ -49,7 +50,7 @@ Let the document writer decide what to push
     {% endblock %}
 
 
-Let the backend developer decide what to push
+Let the backend developer decide what to push:
 
 .. code-block:: python
 
@@ -63,8 +64,9 @@ Let the backend developer decide what to push
 
 Tracking pushed resources
 ~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Ideally, resources already pushed during a session shouldn't be pushed again. So, Flask-Firehose includes a simple utility class to track pushed resources using session variable 'h2-pushed'.
-Additionally, Flask-Firehose can also works with external code to track pushed resources in case the provided implementation is unsuitable.
+Additionally, Flask-Firehose can also work with external code to track pushed resources in case the provided implementation is unsuitable.
 
 .. code-block:: python
 
@@ -116,6 +118,7 @@ Read more at: https://www.nginx.com/blog/nginx-1-13-9-http2-server-push/
 
 Testing
 -------
+
 To initialize a development environment in ./venv:
 
 .. code-block:: bash
