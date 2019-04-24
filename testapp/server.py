@@ -19,13 +19,19 @@ def render_doc1a():
 
 @app.route('/doc1b', methods=['GET'])
 def render_doc1b():
-    push('/static/js/vendor/modernizr-3.5.0.min.js', rel='preload')
+    push('/static/js/vendor/modernizr-3.5.0.min.js', **{
+        'as': 'script',
+        'rel': 'preload'
+    })
     return render_template('doc1.html')
 
 
 @app.route('/doc2', methods=['GET'])
 def render_doc2():
-    push('/static/js/vendor/modernizr-3.5.0.min.js', rel='preload')
+    push('/static/js/vendor/modernizr-3.5.0.min.js', **{
+        'as': 'script',
+        'rel': 'preload'
+    })
     return render_template('doc2.html')
 
 
