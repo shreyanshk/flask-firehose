@@ -5,13 +5,13 @@ def test_push_doc0a(tapp):
 
 def test_push_doc1b(tapp):
     resp = tapp.get('/doc1b')
-    assert resp.headers['Link'] == ('</static/js/vendor/modernizr-3.5.0.min.js>; rel=preload, '
+    assert resp.headers['Link'] == ('</static/js/vendor/modernizr-3.5.0.min.js>; as=script; rel=preload, '
                                     '</static/css/main.css>; as=style; rel=preload, ')
 
 
 def test_push_doc2(tapp):
     resp = tapp.get('/doc2')
-    assert resp.headers['Link'] == '</static/js/vendor/modernizr-3.5.0.min.js>; rel=preload, '
+    assert resp.headers['Link'] == '</static/js/vendor/modernizr-3.5.0.min.js>; as=script; rel=preload, '
 
 
 # tests to make sure subsequent requests do not push again
