@@ -58,7 +58,7 @@ Let the backend developer decide what to push:
 
     @app.route('/someroute')
     def render_someroute():
-        push('/static/css/main.css', as='style', rel='preload')
+        push('/static/css/main.css', **{'as': 'style', 'rel': 'preload'})
         return render_template('some_template')
 
 
