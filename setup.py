@@ -6,7 +6,7 @@ Flask-Firehose
 
 HTTP/2 Server Push for your Flask apps.
 """
-from setuptools import setup
+from setuptools import setup, find_packages
 
 
 with open("README.rst", 'rt', encoding='utf8') as f:
@@ -23,6 +23,7 @@ setup(
     description='HTTP/2 Server Push for your Flask apps.',
     long_description=readme,
     py_modules=['flask_firehose'],
+    packages=find_packages(exclude=["tests", "testapp"]),
     zip_safe=False,
     include_package_data=True,
     platforms='any',
