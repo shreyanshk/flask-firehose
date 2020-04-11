@@ -12,7 +12,9 @@ stdenv.mkDerivation rec {
 		(python3.withPackages(ps: with ps; [
 			flask
 			pytest
+			wheel
+			twine
 		]))
 	];
-	shellHook = "exec fish";
+	shellHook = "export SOURCE_DATE_EPOCH=$(date +%s); exec fish";
 }
